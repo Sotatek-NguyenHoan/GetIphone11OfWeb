@@ -15,21 +15,20 @@ public class TestClass extends BaseTest {
     WebDriver driver;
     EbayPage ebayPage;
     LazadaPage lazadaPage;
+    Attribute attribute=new Attribute();
     @Test
     public void Task()  {
         driver=getWebDriver();
         ebayPage=new EbayPage(driver);
         lazadaPage=new LazadaPage(driver);
         List<Attribute> atributeList0=new ArrayList<Attribute>();
-        ebayPage.searchProductOfEbay();
-        ebayPage.verifyExpectAndActualOfEbay();
+        ebayPage.openeBay();
+        ebayPage.searchProductOfEbay("Iphone 11");
         atributeList0.addAll(ebayPage.getProductOfEbay());
-        lazadaPage.searchProductOfLazada();
-        lazadaPage.verifyExpectAndActualOfLazada();
+        lazadaPage.openLazada();
+        lazadaPage.searchProductOfLazada("Iphone 11");
         atributeList0.addAll(lazadaPage.getProductOfLazada());
         List<Attribute> product = sort(atributeList0);
-        for (int i =0; i< product.size();i++) {
-                System.out.println(product.get(i).getTitle() + " " + product.get(i).getUrl() + " " + product.get(i).getProductName() + " " + product.get(i).getProductPrice());
-        }
+        attribute.showProduct(product);
     }
 }

@@ -41,31 +41,30 @@ public class EbayPage extends BasePage {
             PageFactory.initElements(driver, this);
         }
 
+//    public void verifyExpectAndActualOfEbay(String expect, String actual){
+//        if(actual.contains(expect)){
+//            System.out.println("Product was found");
+//        }
+//        else {
+//            System.out.println("No product !!!");
+//        }
+//    }
+
     @Step("Search product")
-    public void searchProductOfEbay(){
-            sendKeyWordToTextBox( txtboxSearchPath, "Iphone 11");
+    public void searchProductOfEbay(String product){
+            sendKeyWordToTextBox( txtboxSearchPath, product);
             clickToButton( buttonSearchPath);
     }
-
-    @Step("Get title of website")
-    public String getTitleOfEbay(){
-        String title=driver.getTitle();
-        return title;
-    }
-    @Step("Validate expect and actual of ebay")
-    public void verifyExpectAndActualOfEbay(){
-        SoftAssert softAssert = new SoftAssert();
-        String title=driver.getTitle();
-        softAssert.assertTrue("iphone 11".equals(title), "Iphone 11 was found");
-        softAssert.assertFalse("iphone 11".equals(title), "No product of iphone 11");
+    @Step
+    public  void openeBay(){
+        getWeb("https://www.ebay.com/");
     }
     public List<Attribute> getProductOfEbay(){
         List<Attribute> atributeList=new ArrayList<Attribute>();
         for (int i=0;i<20;i++){
-
             double pri=Double.parseDouble(pricePath.get(i).getText().substring(1).split("to")[0])*23000;
             String  pricce=String.valueOf(pri);
-            Attribute atribute=new Attribute(getTitleOfEbay(),nameProductPath.get(i).getText(),pricce.trim(),urlPath.get(i).getAttribute("href") );
+            Attribute atribute=new Attribute(driver.getTitle(),nameProductPath.get(i).getText(),pricce.trim(),urlPath.get(i).getAttribute("href") );
             atributeList.add(atribute);
         }
         return atributeList;

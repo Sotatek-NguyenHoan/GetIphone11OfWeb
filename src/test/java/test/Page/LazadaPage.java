@@ -38,25 +38,14 @@ public class LazadaPage extends BasePage {
             driver = _driver;
             PageFactory.initElements(driver, this);
         }
-
+        @Step
+        public  void openLazada(){
+            getWeb("https://www.lazada.vn/");
+        }
         @Step("Search product")
-        public void searchProductOfLazada(){
-            driver.get("https://www.lazada.vn/");
-            sendKeyWordToTextBox( txtboxSearchPath, "Iphone 11");
+        public void searchProductOfLazada(String product){
+            sendKeyWordToTextBox( txtboxSearchPath, product);
             clickToButton( buttonSearchPath);
-        }
-
-        @Step("Get title of website")
-        public String getTitleOfLazada(){
-            String title2=driver.getTitle().substring(57,61);
-            return title2;
-        }
-        @Step("Validate expect and actual of Lazada")
-        public void verifyExpectAndActualOfLazada(){
-            SoftAssert softAssert = new SoftAssert();
-            String title2=driver.getTitle().substring(57,61);
-            softAssert.assertTrue("iphone 11".equals(title2), "Iphone 11 was found");
-            softAssert.assertFalse("iphone 11".equals(title2), "No product of iphone 11");
         }
 
         @Step("Get information of products")
@@ -64,7 +53,7 @@ public class LazadaPage extends BasePage {
             List<Attribute> atributeList2=new ArrayList<Attribute>();
             for (int i=0;i<20;i++){
                 String pri2=pricePath.get(i).getText().substring(1).replace(",","");
-                Attribute atribute2=new Attribute(getTitleOfLazada(),nameProductPath.get(i).getText(),pri2.trim(),urlPath.get(i).getAttribute("href") );
+                Attribute atribute2=new Attribute(driver.getTitle().substring(57,61),nameProductPath.get(i).getText(),pri2.trim(),urlPath.get(i).getAttribute("href") );
                 atributeList2.add(atribute2);
             }
             return atributeList2;

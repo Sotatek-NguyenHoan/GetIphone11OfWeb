@@ -33,4 +33,8 @@ public class BasePage {
 		this.driver = driver;
 	}
 
+	public void getWeb(String url){
+		driver.get(url);
+	}
+
 }

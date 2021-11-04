@@ -46,12 +46,22 @@ public class BaseTest {
     public void beforeMethod() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        driver.get("https://www.ebay.com/");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
+
     }
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         driver.close();
+    }
+
+    public String verifyExpectAndActual(String expect, String actual){
+        if(actual.contains(expect)){
+            return  "Product was found";
+        }
+        else {
+            return  "No product";
+        }
+
     }
 }

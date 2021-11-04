@@ -1,6 +1,10 @@
 package test.Models;
+import test.Base.BasePage;
+import test.Base.BaseTest;
 
+import java.util.List;
 public class Attribute {
+   BaseTest baseTest=new BaseTest();
     public String title,url, productName; String productPrice;
 
 
@@ -46,5 +50,10 @@ public class Attribute {
         this.url = url;
         this.productName = productName;
         this.productPrice = productPrice;
+    }
+    public void showProduct(List<Attribute> product){
+        for (int i =0; i< product.size();i++) {
+            System.out.println(product.get(i).getTitle() + " " + product.get(i).getUrl() + " " + product.get(i).getProductName() + " " + product.get(i).getProductPrice() +" "+ baseTest.verifyExpectAndActual("Apple iPhone 11",product.get(i).getProductName()));
+        }
     }
 }
