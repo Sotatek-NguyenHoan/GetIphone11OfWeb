@@ -16,19 +16,21 @@ public class TestClass extends BaseTest {
     EbayPage ebayPage;
     LazadaPage lazadaPage;
     Attribute attribute=new Attribute();
+    private String productSearch="Iphone 11";
     @Test
     public void Task()  {
         driver=getWebDriver();
         ebayPage=new EbayPage(driver);
         lazadaPage=new LazadaPage(driver);
         List<Attribute> atributeList0=new ArrayList<Attribute>();
-        ebayPage.openeBay();
-        ebayPage.searchProductOfEbay("Iphone 11");
+        ebayPage.searchProductOfEbay(productSearch);
         atributeList0.addAll(ebayPage.getProductOfEbay());
-        lazadaPage.openLazada();
-        lazadaPage.searchProductOfLazada("Iphone 11");
+        lazadaPage.searchProductOfLazada(productSearch);
         atributeList0.addAll(lazadaPage.getProductOfLazada());
         List<Attribute> product = sort(atributeList0);
-        attribute.showProduct(product);
+
+        for (int i =0; i< product.size();i++) {
+          attribute.showProduct(product.get(i));
+        }
     }
 }

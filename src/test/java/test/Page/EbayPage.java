@@ -5,8 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.asserts.SoftAssert;
+import test.Base.BaseTest;
 import test.Models.Attribute;
 import test.Base.BasePage;
 
@@ -41,24 +40,14 @@ public class EbayPage extends BasePage {
             PageFactory.initElements(driver, this);
         }
 
-//    public void verifyExpectAndActualOfEbay(String expect, String actual){
-//        if(actual.contains(expect)){
-//            System.out.println("Product was found");
-//        }
-//        else {
-//            System.out.println("No product !!!");
-//        }
-//    }
-
     @Step("Search product")
     public void searchProductOfEbay(String product){
+            getWeb(urleBay);
+            clear(txtboxSearchPath);
             sendKeyWordToTextBox( txtboxSearchPath, product);
             clickToButton( buttonSearchPath);
     }
-    @Step
-    public  void openeBay(){
-        getWeb("https://www.ebay.com/");
-    }
+
     public List<Attribute> getProductOfEbay(){
         List<Attribute> atributeList=new ArrayList<Attribute>();
         for (int i=0;i<20;i++){
@@ -70,6 +59,6 @@ public class EbayPage extends BasePage {
         return atributeList;
     }
 
-// "$234 to $456"
+
 
 }

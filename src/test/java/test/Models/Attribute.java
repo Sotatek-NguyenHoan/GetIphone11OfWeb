@@ -51,9 +51,9 @@ public class Attribute {
         this.productName = productName;
         this.productPrice = productPrice;
     }
-    public void showProduct(List<Attribute> product){
-        for (int i =0; i< product.size();i++) {
-            System.out.println(product.get(i).getTitle() + " " + product.get(i).getUrl() + " " + product.get(i).getProductName() + " " + product.get(i).getProductPrice() +" "+ baseTest.verifyExpectAndActual("Apple iPhone 11",product.get(i).getProductName()));
+    public void showProduct(Attribute product){
+
+            System.out.println(product.getTitle() + " " + product.getUrl() + " " + product.getProductName() + " " + product.getProductPrice() +" "+ baseTest.verifyExpectAndActual("Apple iPhone 11",product.getProductName()));
         }
     }
-}
+

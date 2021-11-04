@@ -34,10 +34,7 @@ public class BaseTest {
         }
         return atributelist;
     }
-    public BaseTest getPage(String url){
-        driver.get(url);
-        return this;
-    }
+
 
     public WebDriver getWebDriver() {
         return driver;

@@ -38,12 +38,11 @@ public class LazadaPage extends BasePage {
             driver = _driver;
             PageFactory.initElements(driver, this);
         }
-        @Step
-        public  void openLazada(){
-            getWeb("https://www.lazada.vn/");
-        }
+
         @Step("Search product")
         public void searchProductOfLazada(String product){
+            getWeb(urleLazada);
+            clear(txtboxSearchPath);
             sendKeyWordToTextBox( txtboxSearchPath, product);
             clickToButton( buttonSearchPath);
         }
